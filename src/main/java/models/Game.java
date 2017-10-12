@@ -134,6 +134,7 @@ public class Game {
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
+
         return false;
     }
 
@@ -144,6 +145,10 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
+        if(columnHasCards(columnTo)==false){
+            addCardToCol(columnTo, getTopCard(columnFrom));
+            removeCardFromCol(columnFrom);
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
