@@ -15,7 +15,12 @@ public class Game {
 
 
     public Game(){
-        // initialize a new game such that each column can store card
+        // initialize a new game such that each column can store
+        //four suits
+        for(int i = 0; i < 4; i++) {
+            //15 cards per suit
+            cols.add(new ArrayList<Card>(15));
+        }
     }
 
     public void buildDeck() {
@@ -29,6 +34,16 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
+        Random generator = new Random();
+        for(int i = 0; i < 52; i++){
+            //mod by 52 so that we don't leave scope of ArrayList
+            int random = Math.abs(generator.nextInt() % 52);
+            //swap locations
+            Card temp = deck.get(i);
+            deck.set(i, deck.get(random));
+            deck.set(random, temp);
+        }
+    }
     }
 
     public void dealFour() {
