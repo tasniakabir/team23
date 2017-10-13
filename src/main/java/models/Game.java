@@ -44,7 +44,6 @@ public class Game {
             deck.set(random, temp);
         }
     }
-    }
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
@@ -55,50 +54,71 @@ public class Game {
         //remcard represents the card the player is asking to be removed
         Card remcard;
         //each card represent the top card in that column as indicated by the card number
-        Card card1 = getTopCard(1);
-        Card card2 = getTopCard(2);
-        Card card3 = getTopCard(3);
-        Card card4 = getTopCard(4);
-        //if the columnnumber is 1
-        if (columnNumber == 1) {
-            //check if column 1 has cards
-            if (columnHasCards(1)) {
+        Card card1 = getTopCard(0);
+        Card card2 = getTopCard(1);
+        Card card3 = getTopCard(2);
+        Card card4 = getTopCard(3);
+        //if the column number is 0
+        if (columnNumber == 0) {
+            //check if column 0 has cards
+            if (columnHasCards(0)) {
                 //set the top card of column 1 to remcard
-                remcard = getTopCard(1);
-                //check if column 2 has cards, and if the top card in column2 and remcard have the same suit
-                // and if the remcard's value is less than the top card of column2
+                remcard = getTopCard(0);
+                //check if column 1 has cards, and if the top card in column1 and remcard have the same suit
+                // and if the remcard's value is less than the top card of column1
                 //this is because of according to Ace's Up rules a card can only be removed if it is in the top row and
                 //has a card of the same suit that is of higher value in the top row of all 4 columns
-                if (columnHasCards(2) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
+                if (columnHasCards(1) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
+                    removeCardFromCol(0);
+                }
+                //check top card of column 2
+                else if (columnHasCards(2) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
+                    removeCardFromCol(0);
+                }
+                //check top card of column 3
+                else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
+                    removeCardFromCol(0);
+                }
+            }
+        }
+        //else if column number is 1
+        else if(columnNumber==1){
+            //check if column 1 has cards
+            if (columnHasCards(1)){
+                //set the top card of column 1 to remcard
+                remcard = getTopCard(1);
+                //check if column 0 has cards, and if the top card in column 0 and remcard have the same suit
+                // and if the remcard's value is less than the top card of column 0
+                if (columnHasCards(0) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
+                    removeCardFromCol(1);
+                }
+                //check top card of column 2
+                else if (columnHasCards(2) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
                     removeCardFromCol(1);
                 }
                 //check top card of column 3
-                else if (columnHasCards(3) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
-                    removeCardFromCol(1);
-                }
-                //check top card of column 4
-                else if (columnHasCards(4) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
+                else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
                     removeCardFromCol(1);
                 }
             }
         }
         //else if column number is 2
         else if(columnNumber==2){
-            //check if column 2 has cards
+            //if column 2 has cards
             if (columnHasCards(2)){
-                //set the top card of column 2 to remcard
+                //set remcard to top card of column 2
                 remcard = getTopCard(2);
-                //check if column 1 has cards, and if the top card in column 1 and remcard have the same suit
-                // and if the remcard's value is less than the top card of column 1
-                if (columnHasCards(1) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
+                //check if column 0 has cards, and if the top card in column 0 and remcard have the same suit
+                // and if the remcard's value is less than the top card of column 0
+                if (columnHasCards(0) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
+                    removeCardFromCol(2);
+                }
+                //check top card of column 1
+                else if (columnHasCards(1) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
                     removeCardFromCol(2);
                 }
                 //check top card of column 3
-                else if (columnHasCards(3) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
-                    removeCardFromCol(2);
-                }
-                //check top card of column 4
-                else if (columnHasCards(4) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
+                else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
                     removeCardFromCol(2);
                 }
             }
@@ -107,41 +127,20 @@ public class Game {
         else if(columnNumber==3){
             //if column 3 has cards
             if (columnHasCards(3)){
-                //set remcard to top card of column 3
+                //set top card of column 3
                 remcard = getTopCard(3);
-                //check if column 1 has cards, and if the top card in column 1 and remcard have the same suit
-                // and if the remcard's value is less than the top card of column 1
-                if (columnHasCards(1) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
+                //check if column 0 has cards, and if the top card in column 0 and remcard have the same suit
+                // and if the remcard's value is less than the top card of column 0
+                if (columnHasCards(0) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
+                    removeCardFromCol(3);
+                }
+                //check top card of column 1
+                else if (columnHasCards(1) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
                     removeCardFromCol(3);
                 }
                 //check top card of column 2
-                else if (columnHasCards(2) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
+                else if (columnHasCards(2) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
                     removeCardFromCol(3);
-                }
-                //check top card of column 4
-                else if (columnHasCards(4) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
-                    removeCardFromCol(3);
-                }
-            }
-        }
-        //else if column number is 4
-        else if(columnNumber==4){
-            //if column 4 has cards
-            if (columnHasCards(4)){
-                //set top card of column 4
-                remcard = getTopCard(4);
-                //check if column 1 has cards, and if the top card in column 1 and remcard have the same suit
-                // and if the remcard's value is less than the top card of column 1
-                if (columnHasCards(1) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
-                    removeCardFromCol(4);
-                }
-                //check top card of column 2
-                else if (columnHasCards(2) && remcard.getSuit() == card2.getSuit() && remcard.getValue() < card2.getValue()) {
-                    removeCardFromCol(4);
-                }
-                //check top card of column 3
-                else if (columnHasCards(3) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
-                    removeCardFromCol(4);
                 }
             }
         }
