@@ -1,3 +1,33 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
+/*issue #17 Erin*/
 
+ #dealButton.deck{
+
+ /*position: relative;
+ left: 5%
+ top: 10%;*/
+ /*float: left;*/
+ top: 50px;
+ height: 250px;
+ width: 175px;
+ left: 10%;
+ margin: 20px;
+ }
+
+ .sideBar{
+ display: inline-block;
+ }
+
+ ol{
+
+ width: 300px;
+ padding 20px;
+ wordwrap: normal;
+ }
+ ul{
+
+   width: 300px;
+   padding 20px;
+   wordwrap: normal;
+ }
