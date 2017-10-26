@@ -1,31 +1,31 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
 /*issue #17 Erin*/
- .sideBar{
+ #sideBar{
  display: inline-block;
+ width: 25%;
  }
  #dealButton.deck{
  position: relative;
- left: 20px;
- height: 250px;
- width: 175px;
- margin: 20px;
+ left: 25%;
+ height: 30%;
+ width: 50%;
  }
 
 
  #superiorityRulz.howToPlay{
  font-family: sans-serif;
- font-size: 10px;
+ font-size: 11px;
  }
  ol{
-
- width: 300px;
  padding 20px;
  wordwrap: normal;
  }
  ul{
-
-   width: 300px;
    padding 20px;
    wordwrap: normal;
  }
+ /*#testCols{
+ margin-left: 25%;
+ display: inline-block;
+ }*/
