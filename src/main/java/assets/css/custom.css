@@ -1,24 +1,22 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
 /*issue #17 Erin*/
-
- #dealButton.deck{
-
- /*position: relative;
- left: 5%
- top: 10%;*/
- /*float: left;*/
- top: 50px;
- height: 250px;
- width: 175px;
- left: 10%;
- margin: 20px;
- }
-
  .sideBar{
  display: inline-block;
  }
+ #dealButton.deck{
+ position: relative;
+ left: 20px;
+ height: 250px;
+ width: 175px;
+ margin: 20px;
+ }
 
+
+ #superiorityRulz.howToPlay{
+ font-family: sans-serif;
+ font-size: 10px;
+ }
  ol{
 
  width: 300px;
