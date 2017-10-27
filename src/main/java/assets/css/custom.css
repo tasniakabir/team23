@@ -34,16 +34,14 @@
  display: inline-block;
  vertical-align: top;
  width:70%;
+ margin-left: 4%;
 
  }
  .columnOfCards{
  width: 10%;
  }
  td.cardLocation{
-
  padding-left: 1%;
  padding-right: 1%;
  }
- th{
- text-align: left;
- }
+
