@@ -35,7 +35,7 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealFour();
+        //g.dealFour();
 
         return Results.json().render(g);
     }
