@@ -3,11 +3,12 @@
 /*issue #17 Erin*/
  .sideBar{
  display: inline-block;
+ vertical-align: top;
  width: 25%;
  }
  #dealButton.deck{
  position: relative;
- left: 25%;
+ left: 20%;
  height: 30%;
  width: 50%;
  }
@@ -29,3 +30,20 @@
  margin-left: 25%;
  display: inline-block;
  }*/
+ .tableau{
+ display: inline-block;
+ vertical-align: top;
+ width:70%;
+
+ }
+ .columnOfCards{
+ width: 10%;
+ }
+ td.cardLocation{
+
+ padding-left: 1%;
+ padding-right: 1%;
+ }
+ th{
+ text-align: left;
+ }
