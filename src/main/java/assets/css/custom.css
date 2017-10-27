@@ -45,3 +45,16 @@
  padding-right: 1%;
  }
 
+#from_col{
+width:100px;
+height:30px;
+text-align:center;
+border-radius: 5px;
+}
+
+#to_col{
+width:100px;
+height:30px;
+text-align:center;
+border-radius: 5px;
+}
