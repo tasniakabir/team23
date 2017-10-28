@@ -15,6 +15,8 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
 
+    public boolean error = false;
+
 
     public Game(){
         // initialize a new game such that each column can store
@@ -63,6 +65,8 @@ public class Game {
         Card card2 = getTopCard(1);
         Card card3 = getTopCard(2);
         Card card4 = getTopCard(3);
+        error = false;
+
         //if the column number is 0
         if (columnNumber == 0) {
             //check if column 0 has cards
@@ -84,26 +88,40 @@ public class Game {
                 else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
                     removeCardFromCol(0);
                 }
+                else {
+                    error = true;
+                }
             }
         }
         //else if column number is 1
-        else if(columnNumber==1){
+        else if(columnNumber==1) {
+
             //check if column 1 has cards
-            if (columnHasCards(1)){
+            if (columnHasCards(1)) {
                 //set the top card of column 1 to remcard
                 remcard = getTopCard(1);
+
                 //check if column 0 has cards, and if the top card in column 0 and remcard have the same suit
                 // and if the remcard's value is less than the top card of column 0
+
                 if (columnHasCards(0) && remcard.getSuit() == card1.getSuit() && remcard.getValue() < card1.getValue()) {
                     removeCardFromCol(1);
                 }
+
                 //check top card of column 2
+
                 else if (columnHasCards(2) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
                     removeCardFromCol(1);
                 }
+
                 //check top card of column 3
+
                 else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
                     removeCardFromCol(1);
+                }
+
+                else {
+                    error = true;
                 }
             }
         }
@@ -126,6 +144,10 @@ public class Game {
                 else if (columnHasCards(3) && remcard.getSuit() == card4.getSuit() && remcard.getValue() < card4.getValue()) {
                     removeCardFromCol(2);
                 }
+
+                else {
+                    error = true;
+                }
             }
         }
         //else if column number is 3
@@ -147,6 +169,10 @@ public class Game {
                 else if (columnHasCards(2) && remcard.getSuit() == card3.getSuit() && remcard.getValue() < card3.getValue()) {
                     removeCardFromCol(3);
                 }
+
+                else {
+                    error = true;
+                }
             }
         }
     }
@@ -166,10 +192,22 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
+
+        //check if fine
+
+        // if the column is empty, then move any card
+
         if(columnHasCards(columnTo)==false){
             addCardToCol(columnTo, getTopCard(columnFrom));
             removeCardFromCol(columnFrom);
+            error = false;
+        } else {
+            error = true;
         }
+
+        //if the column is not empty, display error message
+
+        //else
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
