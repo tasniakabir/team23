@@ -128,6 +128,14 @@
 <script>
 
 var game;
+var h = "Hearts";
+var d = "Diamonds";
+var s = "Spades";
+var c = "Clubs";
+var mysuit;
+var n = -1;
+
+var myval;
 
 function display(game) {
 console.log(game);
@@ -135,19 +143,91 @@ console.log(game);
 $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c0 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c1 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c2 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+        
+        $( '#c3 .l'+key ).html(myval + mysuit);
     });
 
 
