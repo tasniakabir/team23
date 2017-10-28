@@ -1,23 +1,71 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
+
+/*issue #19 Maddie*/
+
+#stylebody{
+
+    /*background-image: url('https://cdn.pixabay.com/photo/2016/11/23/15/04/abstract-1853403__340.jpg');*/
+    background-image: url('https://image.freepik.com/free-photo/weathered-retro-table-background-green_1253-481.jpg');
+    /*background-image: url('https://images.freecreatives.com/wp-content/uploads/2016/01/Free-Vector-Wooden-Background-Texture.jpg');*/
+    /*font-family: sans-serif;*/
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    line-height: 46px;
+    font-size: 52px;
+    margin: 0 0 23px 0;
+    text-align: center;
+    color: white;
+}
+
+
+/*#title{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: normal;
+    color: white;
+}*/
+
 /*issue #17 Erin*/
  .sideBar{
  display: inline-block;
  vertical-align: top;
  width: 25%;
  }
+
+ button{
+    font-family: 'Amatic SC', cursive;
+    font-size: 1em;
+    opacity: 1;
+ }
+
+input{
+    opacity: 0.8;
+}
+
  #dealButton.deck{
  position: relative;
+ font-size: 3em;
  left: 20%;
  height: 30%;
  width: 50%;
- }
-
+ opacity: 0.8;
+ color: rgb(62, 188, 112);
+ font-family: 'Amatic SC', cursive;
+ font-weight: 700;
+}
 
  #superiorityRulz.howToPlay{
- font-family: sans-serif;
- font-size: 11px;
+    font-family: sans-serif;
+    font-size: 11px;
+    opacity: 1.0;
  }
+
  ol{
  padding 20px;
  wordwrap: normal;
@@ -43,7 +91,9 @@
  td.cardLocation{
  padding-left: 1%;
  padding-right: 1%;
+ font-size: 1.5em;
  }
+
 
 #from_col{
 width:100px;
@@ -63,4 +113,9 @@ border-radius: 5px;
   width:50px;
   height:30px;
   text-align:center;
-}
+  font-size: 1em;
+ }
+
+
+
+
