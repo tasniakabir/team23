@@ -122,6 +122,8 @@
 </div>
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+
+
 <script>
 
 var game;
@@ -178,8 +180,14 @@ type: "POST",
 url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-game = data;
-display(data);},
+    game = data;
+
+
+    if(data.error) {
+        errorPopup();
+    }
+
+    display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
@@ -210,11 +218,20 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
+
+        if(data.error) {
+            errorPopup();
+        }
+
         display(data);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 });
+
+function errorPopup(){
+   alert("Oops! Looks like you can't do that. Please check the rules and try again.");
+}
 
 
 </script>
