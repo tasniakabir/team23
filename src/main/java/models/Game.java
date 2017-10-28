@@ -57,7 +57,30 @@ public class Game {
     }
 
     public void remove(int columnNumber) {
-        // remove the top card from the indicated column
+        if(columnHasCards(columnNumber)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
+            for (int i = 0; i < 4; i++) {
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (removeCard) {
+                this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
+                error=false;
+            }
+            else{
+                error=true;
+            }
+        }
+        /*// remove the top card from the indicated column
         //remcard represents the card the player is asking to be removed
         Card remcard;
         //each card represent the top card in that column as indicated by the card number
@@ -174,7 +197,7 @@ public class Game {
                     error = true;
                 }
             }
-        }
+        }*/
     }
 
     private boolean columnHasCards(int columnNumber) {
