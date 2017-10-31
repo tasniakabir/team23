@@ -140,7 +140,6 @@
 </div>
 </div>
 
-
 <script>
 
 var game;
@@ -277,8 +276,14 @@ type: "POST",
 url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-game = data;
-display(data);},
+    game = data;
+
+
+    if(data.error) {
+        errorPopup();
+    }
+
+    display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
@@ -309,11 +314,20 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
+
+        if(data.error) {
+            errorPopup();
+        }
+
         display(data);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 });
+
+function errorPopup(){
+   alert("Oops! Looks like you can't do that. Please check the rules and try again.");
+}
 
 
 </script>
