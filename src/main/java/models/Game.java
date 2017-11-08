@@ -212,7 +212,7 @@ public class Game {
         return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
     }
 
-
+    //issue #39
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
 
