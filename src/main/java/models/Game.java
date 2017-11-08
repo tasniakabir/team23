@@ -219,12 +219,16 @@ public class Game {
         //check if fine
 
         // if the column is empty, then move any card
-
-        if(columnHasCards(columnTo)==false){
-            addCardToCol(columnTo, getTopCard(columnFrom));
-            removeCardFromCol(columnFrom);
-            error = false;
-        } else {
+        if(getTopCard(columnFrom).getValue() == 14) {
+            if (columnHasCards(columnTo) == false) {
+                addCardToCol(columnTo, getTopCard(columnFrom));
+                removeCardFromCol(columnFrom);
+                error = false;
+            } else {
+                error = true;
+            }
+        }
+        else{
             error = true;
         }
 
