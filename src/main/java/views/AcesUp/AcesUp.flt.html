@@ -1,10 +1,13 @@
-<h1>Aces Up</h1>
+<h1 id="title">Aces Up</h1>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <link href="/assets/css/custom.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Sans:700|Amatic+SC:700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Abel|Medula+One" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
-<body>
+<body id="stylebody">
+<div id="background"></div>
 <div>
 <div class="sideBar">
     <button class= "deck" id="dealButton">Deal</button>
@@ -14,7 +17,7 @@
         <li>Four cards are dealt in a row face up</li>
         <li>If there are two or more cards of the same suit, discard all but the highest ranked card of that suit</li>
         <li>Repeat step 2 until there are no more pairs of cards with the same suit</li>
-        <li>Whenever there are any empty spaces, you may choose the top card of another pile to be put into the empty space. After this, go to step 2</li>
+        <li>Whenever there is an empty space, you may move an Ace (and only an Ace) from the top a pile into the empty space. After this, go to step 2</li>
         <li>When there are nom more cards to move or remove, deal our the next four cards from the deck to each pile</li>
         <li>Repeat step 2 using only the "top" cards of each of the four piles</li>
         <li>When the last four cards have been dealt and any possible moves made, the game is over. The fewer cards left on the tableau, the better. To win is to have only the four aces left</li>
@@ -29,7 +32,7 @@
 </div>
 
 <div class="tableau">
-<table>
+<table id="cards">
     <!--<tr class="title">
         <th>Column 1</th>
         <th>Column 2</th>
@@ -91,7 +94,7 @@
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-                <tr><td><button id="Remove3">remove</button></td></tr>
+                <tr><td><button id="Remove3">Remove</button></td></tr>
             </table>
         </td>
         <td class="columnOfCards" id="c3">
@@ -118,15 +121,39 @@
 
 <!--<button class= "deck" id="dealButton">Deal</button>-->
 <!--<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>-->
+
+    <BR>Move from column
+    <select id="from_col">
+        <option value="0">Column 0</option>
+        <option value="1">Column 1</option>
+        <option value="2">Column 2</option>
+        <option value="3">Column 3</option>
+    </select>
+    to
+    <select id="to_col">
+        <option value="0">Column 0</option>
+        <option value="1">Column 1</option>
+        <option value="2">Column 2</option>
+        <option value="3">Column 3</option>
+    </select>
+    <button id="moveButton">Move</button>
 </div>
 </div>
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
+
 
 
 
 <script>
 
 var game;
+var h = "Hearts";
+var d = "Diamonds";
+var s = "Spades";
+var c = "Clubs";
+var mysuit;
+var n = -1;
+
+var myval;
 
 function display(game) {
 console.log(game);
@@ -134,19 +161,91 @@ console.log(game);
 $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c0 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c1 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+
+        $( '#c2 .l'+key ).html(myval + mysuit);
     });
 
  $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+        if(val.value==11){ myval="J";}
+        else if(val.value==12){ myval="Q";}
+        else if(val.value==13){ myval="K";}
+        else if(val.value==14){ myval="A";}
+        else{ myval=val.value;}
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit="   &hearts;";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit="   &diams;";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit="   &spades;";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit="   &clubs;";}
+        
+        $( '#c3 .l'+key ).html(myval + mysuit);
     });
 
 
