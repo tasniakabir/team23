@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void shuffle() {
-        // shuffles the deck so that it is random
+        // shuffles the Deck so that it is random
         Random generator = new Random();
         for(int i = 0; i < 52; i++){
             //mod by 52 so that we don't leave scope of ArrayList
