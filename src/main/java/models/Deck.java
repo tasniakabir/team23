@@ -3,11 +3,11 @@ package models;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class deck {
+public class Deck {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public deck(){}
+    public Deck(){}
 
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
@@ -19,7 +19,7 @@ public class deck {
     }
 
     public void shuffle() {
-        // shuffles the deck so that it is random
+        // shuffles the Deck so that it is random
         Random generator = new Random();
         for(int i = 0; i < 52; i++){
             //mod by 52 so that we don't leave scope of ArrayList
