@@ -28,11 +28,30 @@ public class Card implements Serializable {
         return value;
     }
 
-    public String toString() {
+  /*  public String toString() {
         return this.value + this.suit.toString();
     }
+    */
+  public String toString() {
 
-
+      if(this.suit.toString() == "Diamonds") {
+          //this.suit = "&diams";
+          return this.value + "&diams";
+      }
+      if(this.suit.toString() == "Hearts") {
+          //this.suit = "&hearts";
+          return this.value + "&hearts";
+      }
+      if(this.suit.toString() == "Spades") {
+          //this.suit = "&spades";
+          return this.value + "&spades";
+      }
+      if(this.suit.toString() == "Clubs") {
+          //this.suit = "&clubs";
+          return this.value + "&clubs";
+      }
+      return this.value + this.suit.toString();
+  }
 
 }
 
