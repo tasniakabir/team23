@@ -11,7 +11,8 @@ import java.util.Random;
  */
 public class Game {
 
-    public java.util.List<Card> deck = new ArrayList<>();
+   // public java.util.List<Card> deck = new ArrayList<>();
+    public Deck gameDeck=new Deck();
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
 
@@ -27,7 +28,7 @@ public class Game {
         }
     }
 
-    public void buildDeck() {
+ /*   public void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));
             deck.add(new Card(i,Suit.Hearts));
@@ -48,11 +49,12 @@ public class Game {
             deck.set(random, temp);
         }
     }
-
+*/
     public void dealFour() {
         for(int i = 0; i < 4; i++) {
-            cols.get(i).add(deck.get(deck.size() - 1));
-            deck.remove(deck.size() - 1);
+            //cols.get(i).add(deck.get(deck.size() - 1));
+            //deck.remove(deck.size() - 1);
+            cols.get(i).add(gameDeck.dealCard());
         }
     }
 
