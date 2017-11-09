@@ -7,9 +7,12 @@ public class Deck {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public Deck(){}
+    public Deck(){
+        buildDeck();
+        shuffle();
+    }
 
-    public void buildDeck() {
+    private void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));
             deck.add(new Card(i,Suit.Hearts));
@@ -18,7 +21,7 @@ public class Deck {
         }
     }
 
-    public void shuffle() {
+    private void shuffle() {
         // shuffles the Deck so that it is random
         Random generator = new Random();
         for(int i = 0; i < 52; i++){
@@ -31,9 +34,17 @@ public class Deck {
         }
     }
 
+    //this function returns the top card form the deck and removes said card from deck
+    public Card dealCard(){
+        Card tmp= deck.get(deck.size()-1);
+        deck.remove(deck.size() - 1);
+        return tmp;
+    }
+    /*
     public void decreaseDeck() {
         for(int i = 0; i < 4; i++) {
             deck.remove(deck.size() - 1);
         }
     }
+    */
 }
