@@ -2,15 +2,15 @@ package models;
 
 import java.util.ArrayList;
 
-public class Column {
+public class Columns {
 
     public int id;
     public java.util.List<Card> cards = new ArrayList<>();
 
-    public Column() {
+    public Columns() {
     }
 
-    public Column(int id) {
+    public Columns(int id) {
         this.id = id;
     }
 }

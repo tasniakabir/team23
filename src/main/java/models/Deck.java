@@ -40,11 +40,4 @@ public class Deck {
         deck.remove(deck.size() - 1);
         return tmp;
     }
-    /*
-    public void decreaseDeck() {
-        for(int i = 0; i < 4; i++) {
-            deck.remove(deck.size() - 1);
-        }
-    }
-    */
 }
