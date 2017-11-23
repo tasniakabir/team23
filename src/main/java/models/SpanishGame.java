@@ -1,7 +1,7 @@
 
 /*team 23*/
 
-package models;
+/*package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
-public class SpanishGame {
+/*public class SpanishGame {
 
     // public java.util.List<Card> deck = new ArrayList<>();
     public SpanishDeck gameDeck=new SpanishDeck();
@@ -51,7 +51,7 @@ public class SpanishGame {
            }
        }
    */
-    public void dealFour() {
+  /*  public void dealFour() {
         for(int i = 0; i < 4; i++) {
             //cols.get(i).add(deck.get(deck.size() - 1));
             //deck.remove(deck.size() - 1);
@@ -129,4 +129,4 @@ public class SpanishGame {
     private void removeCardFromCol(int colFrom) {
         this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
     }
-}
+}*/

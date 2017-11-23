@@ -1,9 +1,9 @@
-package models;
+/*package models;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Random;*/
 
-public class SpanishDeck {
+/*public class SpanishDeck {
 
     public java.util.List<SpanishCard> deck = new ArrayList<>();
 
@@ -44,4 +44,4 @@ public class SpanishDeck {
         deck.remove(deck.size() - 1);
         return tmp;
     }
-}
+}*/
