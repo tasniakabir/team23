@@ -162,6 +162,11 @@ var mysuit;
 var n = -1;
 var myspanish=0;
 var mystandard=0;
+var spanishgame;
+var b = "Bastos";
+var o = "Oros";
+var e = "Espedas";
+var co = "Copas";
 
 var myval;
 
@@ -170,15 +175,171 @@ $(document).ready(function () {
     $("#spanish").on('click', function() {
         $('#myModal').fadeOut('slow');
         myspanish=1;
+                function display(spanishgame) {
+console.log(spanishgame);
+
+$( '.columnOfCards .cardLocation' ).html("");
+
+    $.each(spanishgame.cols[0].cards, function( key, val ) {
+        myval=val.value;
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit=" Bastos";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit=" Oros";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit=" Espadas";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit=" Copas";}
+
+        $( '#c0 .l'+key ).html(myval + mysuit);
     });
+
+ $.each(spanishgame.cols[1].cards, function( key, val ) {
+        myval=val.value;
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit=" Bastos";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit=" Oros";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit=" Espadas";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit=" Copas";}
+
+        $( '#c1 .l'+key ).html(myval + mysuit);
+    });
+
+ $.each(spanishgame.cols[2].cards, function( key, val ) {
+        myval=val.value;
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit=" Bastos";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit=" Oros";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit=" Espadas";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit=" Copas";}
+
+        $( '#c2 .l'+key ).html(myval + mysuit);
+    });
+
+ $.each(spanishgame.cols[3].cards, function( key, val ) {
+        myval=val.value;
+
+        n=h.localeCompare(val.suit);
+        if(n==0){ mysuit=" Bastos";}
+
+        n=d.localeCompare(val.suit);
+        if(n==0){ mysuit=" Oros";}
+
+        n=s.localeCompare(val.suit);
+        if(n==0){ mysuit=" Espadas";}
+
+        n=c.localeCompare(val.suit);
+        if(n==0){ mysuit=" Copas";}
+
+        $( '#c3 .l'+key ).html(myval + mysuit);
+    });
+}
+
+// Calls ApplicationController.spanishgameGet()
+$.getJSON("http://localhost:8080/game", function( data ) {
+display(data);
+spanishgame = data;
+});
+
+
+$("#dealButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/dealGame",
+  data: JSON.stringify(spanishgame),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        spanishgame = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+function removeCard(colNumber){
+$.ajax({
+type: "POST",
+url: "/removeCard/"+colNumber,
+data: JSON.stringify(spanishgame),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+    spanishgame = data;
+
+
+    if(data.error) {
+        errorPopup();
+    }
+
+    display(data);},
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+
+}
+
+
+$("#Remove1").click(function(){
+    removeCard(0);
+});
+$("#Remove2").click(function(){
+    removeCard(1);
+});
+$("#Remove3").click(function(){
+    removeCard(2);
+});
+$("#Remove4").click(function(){
+    removeCard(3);
+});
+
+
+$("#moveButton").click(function(){
+var colFrom = $("#from_col").val();
+var colTo = $("#to_col").val();
+$.ajax({
+  type: "POST",
+  url: "/moveCard/"+colFrom+"/"+colTo,
+  data: JSON.stringify(spanishgame),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        spanishgame = data;
+
+        if(data.error) {
+            errorPopup();
+        }
+
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+function errorPopup(){
+   alert("Oops! Looks like you can't do that. Please check the rules and try again.");
+}
+    });
+
 
     $("#standard").on('click', function() {
         mystandard=1;
         $('#myModal').fadeOut('slow');
-    });
-});
-
-function display(game) {
+        function display(game) {
 console.log(game);
 
 $( '.columnOfCards .cardLocation' ).html("");
@@ -267,7 +428,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
         n=c.localeCompare(val.suit);
         if(n==0){ mysuit="   &clubs;";}
-        
+
         $( '#c3 .l'+key ).html(myval + mysuit);
     });
 }
@@ -352,6 +513,9 @@ $.ajax({
 function errorPopup(){
    alert("Oops! Looks like you can't do that. Please check the rules and try again.");
 }
+
+    });
+});
 
 
 </script>
