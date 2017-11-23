@@ -8,7 +8,18 @@
 
 <body id="stylebody">
 <div id="background"></div>
-<div>
+
+<div id="myModal" class="modal fade in">
+    <div class="modal-dialog"><
+        <div class="modal-content">
+            <p>Please choose a deck to play with: </p>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="spanish">Spanish Deck</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="standard">Standard Deck</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop fade in">
 <div class="sideBar">
     <button class= "deck" id="dealButton">Deal</button>
     <div class="howToPlay" id="superiorityRulz">
@@ -149,8 +160,23 @@ var s = "Spades";
 var c = "Clubs";
 var mysuit;
 var n = -1;
+var myspanish=0;
+var mystandard=0;
 
 var myval;
+
+$(document).ready(function () {
+    $('#myModal').fadeIn('slow');
+    $("#spanish").on('click', function() {
+        $('#myModal').fadeOut('slow');
+        myspanish=1;
+    });
+
+    $("#standard").on('click', function() {
+        $('#myModal').fadeOut('slow');
+        mystandard=1;
+    });
+});
 
 function display(game) {
 console.log(game);
@@ -324,6 +350,7 @@ $.ajax({
   dataType:"json",
 });
 });
+
 
 function errorPopup(){
    alert("Oops! Looks like you can't do that. Please check the rules and try again.");
