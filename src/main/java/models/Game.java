@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Game {
 
     public Deck gameDeck=new Deck();
+    public SpanishDeck gameSpanishDeck= new SpanishDeck();
     public java.util.List<Columns> cols = new ArrayList <> ();
     public boolean error = false;
 
@@ -26,6 +27,61 @@ public class Game {
         for(int i = 0; i < 4; i++) {
             cols.get(i).cards.add(gameDeck.dealCard());
         }
+    }
+
+    public void dealSpanishFour() {
+        for(int i = 0; i < 4; i++) {
+            if(gameSpanishDeck.deck.size()!=0){
+                cols.get(i).cards.add(gameSpanishDeck.dealCard());
+            }
+        }
+    }
+
+    public void removeSpanish(int columnNumber) {
+        if(columnHasCards(columnNumber)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
+            boolean removeJoker=false;
+            for (int i = 0; i < 4; i++) {
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getValue()==0){
+                            removeJoker=true;
+                        }
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (removeCard) {
+                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1);
+                error=false;
+            }
+            else{
+                if(removeJoker==true){
+                    this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size()-1);
+                    int cj=findJoker();
+                    this.cols.get(cj).cards.remove(this.cols.get(cj).cards.size()-1);
+                    error=false;
+                }
+                else {
+                    error = true;
+                }
+            }
+        }
+    }
+
+    private int findJoker(){
+        for (int i=0; i<4; i++){ //iterate through columns
+            if (getTopCard(i).getValue()==0){
+                return i; //return column number of col containing joker
+            }
+        }
+        return 7; //return number signifying no joker was present
     }
 
     public void remove(int columnNumber) {
