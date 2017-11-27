@@ -167,7 +167,6 @@ var b = "Bastos";
 var o = "Oros";
 var e = "Espadas";
 var co = "Copas";
-var j = "Comodines";
 
 var myval;
 
@@ -182,110 +181,79 @@ console.log(spanishgame);
 $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(spanishgame.cols[0].cards, function( key, val ) {
-        if(val.value==0){
-            myval=" ";
-        }
-        else{
-            myval=val.value;
-        }
+        myval=val.value;
 
-        n=b.localeCompare(val.suit);
+        n=h.localeCompare(val.suit);
         if(n==0){ mysuit=" Bastos";}
 
-        n=o.localeCompare(val.suit);
+        n=d.localeCompare(val.suit);
         if(n==0){ mysuit=" Oros";}
 
-        n=e.localeCompare(val.suit);
+        n=s.localeCompare(val.suit);
         if(n==0){ mysuit=" Espadas";}
 
-        n=co.localeCompare(val.suit);
+        n=c.localeCompare(val.suit);
         if(n==0){ mysuit=" Copas";}
-
-        n=j.localeCompare(val.suit);
-        if (n==0) { mysuit=" Comodines";}
 
         $( '#c0 .l'+key ).html(myval + mysuit);
     });
 
  $.each(spanishgame.cols[1].cards, function( key, val ) {
-        if(val.value==0){
-            myval=" ";
-        }
-        else{
-            myval=val.value;
-        }
+        myval=val.value;
 
-        n=b.localeCompare(val.suit);
+        n=h.localeCompare(val.suit);
         if(n==0){ mysuit=" Bastos";}
 
-        n=o.localeCompare(val.suit);
+        n=d.localeCompare(val.suit);
         if(n==0){ mysuit=" Oros";}
 
-        n=e.localeCompare(val.suit);
+        n=s.localeCompare(val.suit);
         if(n==0){ mysuit=" Espadas";}
 
-        n=co.localeCompare(val.suit);
+        n=c.localeCompare(val.suit);
         if(n==0){ mysuit=" Copas";}
-
-        n=j.localeCompare(val.suit);
-        if (n==0) { mysuit=" Comodines";}
 
         $( '#c1 .l'+key ).html(myval + mysuit);
     });
 
  $.each(spanishgame.cols[2].cards, function( key, val ) {
-        if(val.value==0){
-            myval=" ";
-        }
-        else{
-            myval=val.value;
-        }
-        n=b.localeCompare(val.suit);
+        myval=val.value;
+
+        n=h.localeCompare(val.suit);
         if(n==0){ mysuit=" Bastos";}
 
-        n=o.localeCompare(val.suit);
+        n=d.localeCompare(val.suit);
         if(n==0){ mysuit=" Oros";}
 
-        n=e.localeCompare(val.suit);
+        n=s.localeCompare(val.suit);
         if(n==0){ mysuit=" Espadas";}
 
-        n=co.localeCompare(val.suit);
+        n=c.localeCompare(val.suit);
         if(n==0){ mysuit=" Copas";}
-
-        n=j.localeCompare(val.suit);
-        if (n==0) { mysuit=" Comodines";}
 
         $( '#c2 .l'+key ).html(myval + mysuit);
     });
 
  $.each(spanishgame.cols[3].cards, function( key, val ) {
-        if(val.value==0){
-            myval=" ";
-        }
-        else{
-            myval=val.value;
-        }
+        myval=val.value;
 
-        n=b.localeCompare(val.suit);
+        n=h.localeCompare(val.suit);
         if(n==0){ mysuit=" Bastos";}
 
-        n=o.localeCompare(val.suit);
+        n=d.localeCompare(val.suit);
         if(n==0){ mysuit=" Oros";}
 
-        n=e.localeCompare(val.suit);
+        n=s.localeCompare(val.suit);
         if(n==0){ mysuit=" Espadas";}
 
-        n=co.localeCompare(val.suit);
+        n=c.localeCompare(val.suit);
         if(n==0){ mysuit=" Copas";}
-
-        n=j.localeCompare(val.suit);
-        if (n==0) { mysuit=" Comodines";}
 
         $( '#c3 .l'+key ).html(myval + mysuit);
     });
 }
 
-// Calls ApplicationController.gameGet()
+// Calls ApplicationController.spanishgameGet()
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 spanishgame = data;
@@ -295,7 +263,7 @@ spanishgame = data;
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/spanishGame",
+  url: "/dealGame",
   data: JSON.stringify(spanishgame),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         spanishgame = data;
@@ -306,10 +274,10 @@ $.ajax({
 });
 
 
-function removeSpanishCard(colNumber){
+function removeCard(colNumber){
 $.ajax({
 type: "POST",
-url: "/removeSpanishCard/"+colNumber,
+url: "/removeCard/"+colNumber,
 data: JSON.stringify(spanishgame),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
     spanishgame = data;
@@ -328,16 +296,16 @@ dataType:"json",
 
 
 $("#Remove1").click(function(){
-    removeSpanishCard(0);
+    removeCard(0);
 });
 $("#Remove2").click(function(){
-    removeSpanishCard(1);
+    removeCard(1);
 });
 $("#Remove3").click(function(){
-    removeSpanishCard(2);
+    removeCard(2);
 });
 $("#Remove4").click(function(){
-    removeSpanishCard(3);
+    removeCard(3);
 });
 
 

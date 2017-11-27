@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Game {
 
     public Deck gameDeck=new Deck();
-    public SpanishDeck gameSpanishDeck= new SpanishDeck();
     public java.util.List<Columns> cols = new ArrayList <> ();
     public boolean error = false;
 
@@ -27,15 +26,6 @@ public class Game {
         for(int i = 0; i < 4; i++) {
             cols.get(i).cards.add(gameDeck.dealCard());
         }
-    }
-
-    private int findJoker(){
-        for (int i=0; i<4; i++){ //iterate through columns
-            if (getTopCard(i).getValue()==0){
-                return i; //return column number of col containing joker
-            }
-        }
-        return 7; //return number signifying no joker was present
     }
 
     public void remove(int columnNumber) {
