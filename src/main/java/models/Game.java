@@ -22,6 +22,20 @@ public class Game {
         }
     }
 
+    public void dealSpanishFour() {
+
+        for(int i = 0; i < 4; i++) {
+
+            if(gameSpanishDeck.deck.size()!=0){
+
+                cols.get(i).cards.add(gameSpanishDeck.dealCard());
+
+            }
+
+        }
+
+    }
+
     public void dealFour() {
         for(int i = 0; i < 4; i++) {
             cols.get(i).cards.add(gameDeck.dealCard());
