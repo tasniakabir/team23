@@ -28,6 +28,18 @@ public class Game {
         }
     }
 
+    //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
+    public void customDeal(int c1, int c2, int c3, int c4) {
+        cols.get(0).cards.add(gameDeck.deck.get(c1));
+        gameDeck.deck.remove(c1);
+        cols.get(1).cards.add(gameDeck.deck.get(c2));
+        gameDeck.deck.remove(c2);
+        cols.get(2).cards.add(gameDeck.deck.get(c3));
+        gameDeck.deck.remove(c3);
+        cols.get(3).cards.add(gameDeck.deck.get(c4));
+        gameDeck.deck.remove(c4);
+    }
+
     public void remove(int columnNumber) {
         if(columnHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
