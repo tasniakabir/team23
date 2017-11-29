@@ -4,20 +4,15 @@ package models;
 
 import java.util.ArrayList;
 
-/**
- * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
- */
 public class Game {
 
     public Deck gameDeck=new Deck();
+    public SpanishDeck gameSpanishDeck= new SpanishDeck();
     public java.util.List<Columns> cols = new ArrayList <> ();
     public boolean error = false;
 
     public Game(){
-        // initialize a new game such that each column can store
-        //four suits
         for(int i = 1; i < 5; i++) {
-            //15 cards per suit
             cols.add(new Columns(i));
         }
     }
@@ -65,6 +60,9 @@ public class Game {
             }
         }
     }
+    public void dealSpanishFour() {} //tasnia
+
+    public void removeSpanish(int columnNumber) {} //erin
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true

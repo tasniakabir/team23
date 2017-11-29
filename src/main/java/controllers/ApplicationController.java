@@ -41,14 +41,23 @@ public class ApplicationController {
     }
 
     public Result dealPost(Context context, Game g) {
-        if(context.getRequestPath().contains("deal")){
+        if(context.getRequestPath().contains("spanish")){
+            g.dealSpanishFour();
+        }
+        else if(context.getRequestPath().contains("deal")){
             g.dealFour();
         }
+
         return Results.json().render(g);
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
         g.remove(colNumber);
+        return Results.json().render(g);
+    }
+
+    public Result removeSpanishCard(Context context, @PathParam("column") int colNumber, Game g){
+        g.removeSpanish(colNumber);
         return Results.json().render(g);
     }
 
