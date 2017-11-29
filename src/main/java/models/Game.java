@@ -62,6 +62,13 @@ public class Game {
             for (int i = 0; i < 4; i++) {
                 if (i != columnNumber) {
                     if (columnHasCards(i)) {
+
+                        //check for comodines
+                        int comodineCol=findComodine();
+                        if (comodineCol < 4){
+                            this.cols.get(comodineCol).cards.remove(this.cols.get(comodineCol).cards.size()-1);
+                            removeCard=true;
+                        }
                         Card compare = getTopCard(i);
                         if (compare.getSuit() == c.getSuit()) {
                             if (compare.getValue() > c.getValue()) {
@@ -79,7 +86,15 @@ public class Game {
                 error=true;
             }
     }
-
+    private int findComodine(){
+        for (int i = 0; i < 4; i++) {
+            if(getTopCard(i).getValue()==0) {
+                return i;
+            }
+        }
+        return 7;
+    }
+}
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
         if(cols.get(columnNumber).cards.size()>0) {
