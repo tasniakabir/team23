@@ -54,6 +54,32 @@ public class Game {
         }
     }
 
+    //New Remove function for spanish deck
+    public void removeSpanishCard(int columnNumber){
+        if(columnHasCards(columnNumber)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
+            for (int i = 0; i < 4; i++) {
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (removeCard) {
+                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1);
+                error=false;
+            }
+            else{
+                error=true;
+            }
+    }
+
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
         if(cols.get(columnNumber).cards.size()>0) {
