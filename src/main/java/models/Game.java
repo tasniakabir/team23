@@ -50,10 +50,7 @@ public class Game {
     }
     public void dealSpanishFour() {} //tasnia
 
-    public void removeSpanish(int columnNumber) {} //erin
-
-    //New Remove function for spanish deck
-    public void removeSpanishCard(int columnNumber){
+    public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
         if(columnHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
             boolean removeCard = false;
@@ -84,7 +81,7 @@ public class Game {
                 error=true;
             }
     }
-    private int findComodine(){
+    private int findComodine(){ //function returns column number that has a comodine on top or a "garbage" val 
         for (int i = 0; i < 4; i++) {
             if(getTopCard(i).getValue()==0) {
                 return i;
