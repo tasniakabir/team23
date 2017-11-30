@@ -66,32 +66,29 @@ public class Game {
 
     public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
         if(columnHasCards(columnNumber)) {
-            Card c = getTopCard(columnNumber);
             boolean removeCard = canRemove(columnNumber);
-            boolean removeViaComodine =false;
-            boolean removeComodine=isComodine(columnNumber);
+            int removeViaComodine = findComodine();
+            boolean removeComodine = isComodine(columnNumber);
 
-            //check for comodines
-            int comodineCol=findComodine();
-            if (comodineCol < 4){
-                removeViaComodine=true;
-                removeCard=true;
-            }
-            if (removeComodine){
+            if (removeComodine){ //remove the comodine (cus that is what was clicked)
                 this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size()-1);
+                error=false;
             }
-            if (removeCard) {
-                if (removeViaComodine==true){
-                    this.cols.get(comodineCol).cards.remove(this.cols.get(comodineCol).cards.size()-1); //remove the comodine
-                }
+            else if (removeCard) { //there is a card of same suit, higher val
                 this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
                 error=false;
             }
-            else{
+            else if(removeViaComodine<4){ //remove using wild card rule
+                this.cols.get(removeViaComodine).cards.remove(this.cols.get(removeViaComodine).cards.size()-1); //remove the comodine
+                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
+                error=false;
+            }
+            else{ //cant remove
                 error=true;
             }
         }
     }
+    //this fn iterates through cols, ret true if there is a card of same suit && higher val than column passed in as parameter
     private boolean canRemove(int columnNumber){
         Card c = getTopCard(columnNumber);
         for (int i = 0; i < 4; i++) {
@@ -101,7 +98,6 @@ public class Game {
                     if (compare.getSuit() == c.getSuit()) {
                         if (compare.getValue() > c.getValue()) {
                             return true;
-                            //removeComodine = false; //there was a card of same suit and higher value so don't remove joker
                         }
                     }
                 }
@@ -109,15 +105,16 @@ public class Game {
         }
         return false;
     }
+    //Fn to check if card user wants to remove is a comodine, ret true if card is comodine
     private boolean isComodine(int columnNumber){
-        if (columnHasCards(columnNumber)){
-            if (getTopCard(columnNumber).getValue()==0){
-                return true;
-            }
+        if (getTopCard(columnNumber).getValue()==0){
+            return true;
         }
         return false;
     }
-    private int findComodine(){ //function returns column number that has a comodine on top or a "garbage" val
+
+    //function returns column number that has a comodine on top or a "garbage" val
+    private int findComodine(){
         for (int i = 0; i < 4; i++) {
             if(columnHasCards(i)){
                 if(getTopCard(i).getValue()==0) {
