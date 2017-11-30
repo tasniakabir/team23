@@ -64,7 +64,51 @@ public class Game {
     }
     public void dealSpanishFour() {} //tasnia
 
-    public void removeSpanish(int columnNumber) {} //erin
+    public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
+        if(columnHasCards(columnNumber)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
+            boolean removeComodine =false;
+
+            //check for comodines
+            int comodineCol=findComodine();
+            if (comodineCol < 4){
+                removeComodine=true;
+                removeCard=true;
+            }
+            for (int i = 0; i < 4; i++) {
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
+                                removeComodine = false; //there was a card of same suit and higher value so don't remove joker
+                            }
+                        }
+                    }
+                }
+            }
+            if (removeCard) {
+                if (removeComodine==true){
+                    this.cols.get(comodineCol).cards.remove(this.cols.get(comodineCol).cards.size()-1); //remove the comodine
+                }
+                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
+                error=false;
+            }
+            else{
+                error=true;
+            }
+        }
+    }
+    private int findComodine(){ //function returns column number that has a comodine on top or a "garbage" val
+        for (int i = 0; i < 4; i++) {
+            if(getTopCard(i).getValue()==0) {
+                return i;
+            }
+        }
+        return 7;
+    }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
