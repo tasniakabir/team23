@@ -62,35 +62,26 @@ public class Game {
             }
         }
     }
-    public void dealSpanishFour() {} //tasnia
+
 
     public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
         if(columnHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
-            boolean removeCard = false;
-            boolean removeComodine =false;
+            boolean removeCard = canRemove(columnNumber);
+            boolean removeViaComodine =false;
+            boolean removeComodine=isComodine(columnNumber);
 
             //check for comodines
             int comodineCol=findComodine();
             if (comodineCol < 4){
-                removeComodine=true;
+                removeViaComodine=true;
                 removeCard=true;
             }
-            for (int i = 0; i < 4; i++) {
-                if (i != columnNumber) {
-                    if (columnHasCards(i)) {
-                        Card compare = getTopCard(i);
-                        if (compare.getSuit() == c.getSuit()) {
-                            if (compare.getValue() > c.getValue()) {
-                                removeCard = true;
-                                removeComodine = false; //there was a card of same suit and higher value so don't remove joker
-                            }
-                        }
-                    }
-                }
+            if (removeComodine){
+                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size()-1);
             }
             if (removeCard) {
-                if (removeComodine==true){
+                if (removeViaComodine==true){
                     this.cols.get(comodineCol).cards.remove(this.cols.get(comodineCol).cards.size()-1); //remove the comodine
                 }
                 this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
@@ -101,10 +92,37 @@ public class Game {
             }
         }
     }
+    private boolean canRemove(int columnNumber){
+        Card c = getTopCard(columnNumber);
+        for (int i = 0; i < 4; i++) {
+            if (i != columnNumber) {
+                if (columnHasCards(i)) {
+                    Card compare = getTopCard(i);
+                    if (compare.getSuit() == c.getSuit()) {
+                        if (compare.getValue() > c.getValue()) {
+                            return true;
+                            //removeComodine = false; //there was a card of same suit and higher value so don't remove joker
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    private boolean isComodine(int columnNumber){
+        if (columnHasCards(columnNumber)){
+            if (getTopCard(columnNumber).getValue()==0){
+                return true;
+            }
+        }
+        return false;
+    }
     private int findComodine(){ //function returns column number that has a comodine on top or a "garbage" val
         for (int i = 0; i < 4; i++) {
-            if(getTopCard(i).getValue()==0) {
-                return i;
+            if(columnHasCards(i)){
+                if(getTopCard(i).getValue()==0) {
+                    return i;
+                }
             }
         }
         return 7;
