@@ -78,7 +78,6 @@ public class Game {
             }
         }
     }
-    public void dealSpanishFour() {} //tasnia
 
     public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
         if(columnHasCards(columnNumber)) {

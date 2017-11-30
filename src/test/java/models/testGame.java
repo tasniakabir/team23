@@ -21,6 +21,12 @@ public class testGame {
     }
 
     @Test
+    public void testGameBuildSpanishDeck(){
+        Game g = new Game();
+        assertEquals(50,g.gameSpanishDeck.deck.size());
+    }
+
+    @Test
     public void testGameShuffle(){
         Game g1 = new Game();
         Game g2 = new Game();
@@ -29,10 +35,29 @@ public class testGame {
     }
 
     @Test
+    public void testGameSpanishShuffle(){
+        Game g1 = new Game();
+        Game g2 = new Game();
+        // g1 and g2 could shuffle to the same order, but that chance is approximately 1 in 8*10^67 shuffles
+        assertFalse(Arrays.equals(g1.gameSpanishDeck.deck.toArray(),g2.gameSpanishDeck.deck.toArray()));
+    }
+
+    @Test
     public void testGameStart(){
         Game g = new Game();
         //g.gameDeck.shuffle();
         g.dealFour();
+        assertEquals(1,g.cols.get(0).cards.size());
+        assertEquals(1,g.cols.get(1).cards.size());
+        assertEquals(1,g.cols.get(2).cards.size());
+        assertEquals(1,g.cols.get(3).cards.size());
+    }
+
+    @Test
+    public void testGameSpanishStart(){
+        Game g = new Game();
+        //g.gameDeck.shuffle();
+        g.dealSpanishFour();
         assertEquals(1,g.cols.get(0).cards.size());
         assertEquals(1,g.cols.get(1).cards.size());
         assertEquals(1,g.cols.get(2).cards.size());
