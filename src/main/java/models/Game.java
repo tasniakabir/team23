@@ -62,7 +62,6 @@ public class Game {
             }
         }
     }
-    public void dealSpanishFour() {} //tasnia
 
     public void removeSpanish(int columnNumber) {} //erin
 
