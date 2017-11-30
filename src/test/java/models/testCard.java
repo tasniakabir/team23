@@ -14,7 +14,7 @@ public class testCard {
     @Test
     public void testToString(){
         Card c = new Card(5,Suit.Clubs);
-        assertEquals("5Clubs",c.toString());
+        assertEquals("5&clubs",c.toString());
     }
 
     @Test
