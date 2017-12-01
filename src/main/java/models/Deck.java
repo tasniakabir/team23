@@ -12,6 +12,12 @@ public class Deck {
         shuffle();
     }
 
+    public Deck(int test){
+        if (test==1) {
+            buildDeck();
+        }
+    }
+
     private void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));

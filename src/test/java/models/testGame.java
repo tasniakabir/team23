@@ -21,12 +21,6 @@ public class testGame {
     }
 
     @Test
-    public void testGameBuildSpanishDeck(){
-        Game g = new Game();
-        assertEquals(50,g.gameSpanishDeck.deck.size());
-    }
-
-    @Test
     public void testGameShuffle(){
         Game g1 = new Game();
         Game g2 = new Game();
@@ -54,24 +48,13 @@ public class testGame {
     }
 
     @Test
-    public void testGameSpanishStart(){
-        Game g = new Game();
-        //g.gameDeck.shuffle();
-        g.dealSpanishFour();
-        assertEquals(1,g.cols.get(0).cards.size());
-        assertEquals(1,g.cols.get(1).cards.size());
-        assertEquals(1,g.cols.get(2).cards.size());
-        assertEquals(1,g.cols.get(3).cards.size());
-    }
-
-    @Test
     public void testCustomDeal(){
         Game g = new Game();
-        g.customDeal(0,3,6,9);
+        g.customDeal(0,0,0,0);
         assertEquals("2&clubs",g.cols.get(0).cards.get(0).toString());
-        assertEquals("3&clubs",g.cols.get(1).cards.get(0).toString());
-        assertEquals("4&clubs",g.cols.get(2).cards.get(0).toString());
-        assertEquals("5&clubs",g.cols.get(3).cards.get(0).toString());
+        assertEquals("2&hearts",g.cols.get(1).cards.get(0).toString());
+        assertEquals("2&diams",g.cols.get(2).cards.get(0).toString());
+        assertEquals("2&spades",g.cols.get(3).cards.get(0).toString());
     }
 
     @Test
