@@ -21,6 +21,13 @@ public class testGame {
     }
 
     @Test
+    public void testGameBuildSpanishDeck(){
+
+        Game g = new Game();
+        assertEquals(50, g.gameSpanishDeck.deck.size());
+    }
+
+    @Test
     public void testGameShuffle(){
         Game g1 = new Game();
         Game g2 = new Game();
