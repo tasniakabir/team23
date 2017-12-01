@@ -9,6 +9,7 @@ public class Game {
     public Deck gameDeck=new Deck();
     public Deck testDeck=new Deck(1);
     public SpanishDeck gameSpanishDeck= new SpanishDeck();
+    public SpanishDeck testSpanishDeck= new SpanishDeck(1);
     public java.util.List<Columns> cols = new ArrayList <> ();
     public boolean error = false;
 
@@ -42,17 +43,25 @@ public class Game {
     //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
     public void customDeal(int c1, int c2, int c3, int c4) {
         cols.get(0).cards.add(testDeck.deck.get(c1));
-        //remove(c1);
         testDeck.deck.remove(c1);
         cols.get(1).cards.add(testDeck.deck.get(c2));
         testDeck.deck.remove(c2);
-        //remove(c2);
         cols.get(2).cards.add(testDeck.deck.get(c3));
         testDeck.deck.remove(c3);
-        //remove(c3);
         cols.get(3).cards.add(testDeck.deck.get(c4));
         testDeck.deck.remove(c4);
-        //remove(c4);
+    }
+
+    //customSpanishDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
+    public void customSpanishDeal(int c1, int c2, int c3, int c4) {
+        cols.get(0).cards.add(testSpanishDeck.deck.get(c1));
+        testSpanishDeck.deck.remove(c1);
+        cols.get(1).cards.add(testSpanishDeck.deck.get(c2));
+        testSpanishDeck.deck.remove(c2);
+        cols.get(2).cards.add(testSpanishDeck.deck.get(c3));
+        testSpanishDeck.deck.remove(c3);
+        cols.get(3).cards.add(testSpanishDeck.deck.get(c4));
+        testSpanishDeck.deck.remove(c4);
     }
 
     public void remove(int columnNumber) {
