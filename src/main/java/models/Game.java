@@ -18,6 +18,7 @@ public class Game {
         }
     }
 
+
     public void dealSpanishFour() {
 
         for(int i = 0; i < 4; i++) {
