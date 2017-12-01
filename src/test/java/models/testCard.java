@@ -20,7 +20,7 @@ public class testCard {
     @Test
     public void testMoveCard(){
         Game g = new Game();
-        g.customDeal(0,3,6,9);
+        g.customDeal(48,7,3,9);
         g.remove(2);
         assertEquals(0,g.cols.get(2).cards.size());
         g.move(0,2);
