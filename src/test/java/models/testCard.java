@@ -40,4 +40,14 @@ public class testCard {
         assertEquals("5Bastos",c.toString());
     }
 
+    @Test
+    public void testSpanishMoveCard(){
+        Game g = new Game();
+        g.customSpanishDeal(0,7,3,9);
+        g.remove(2);
+        assertEquals(0,g.cols.get(2).cards.size());
+        g.move(0,2);
+        assertEquals(1,g.cols.get(2).cards.size());
+        assertEquals(0,g.cols.get(0).cards.size());
+    }
 }
