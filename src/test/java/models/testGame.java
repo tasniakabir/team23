@@ -82,6 +82,11 @@ public class testGame {
         assertEquals(0,g.cols.get(2).cards.size());
     }
 
-
-
+    @Test
+    public void testSpanish(){
+        Game g = new Game();
+        g.customDeal(0, 3, 6, 9);
+        g.removeSpanish(2);
+        assertEquals(0, g.cols.get(2).cards.size());
+    }
 }
