@@ -46,8 +46,7 @@ public class testGame {
     @Test
     public void testGameStart(){
         Game g = new Game();
-        //g.gameDeck.shuffle();
-        g.dealFour();
+        g.dealFour(0);
         assertEquals(1,g.cols.get(0).cards.size());
         assertEquals(1,g.cols.get(1).cards.size());
         assertEquals(1,g.cols.get(2).cards.size());
@@ -55,9 +54,9 @@ public class testGame {
     }
 
     @Test
-    public void testGameSpanishStart(){
+    public void testSpanishGameStart(){
         Game g = new Game();
-        g.dealSpanishFour();
+        g.dealFour(1);
         assertEquals(1,g.cols.get(0).cards.size());
         assertEquals(1,g.cols.get(1).cards.size());
         assertEquals(1,g.cols.get(2).cards.size());
@@ -92,11 +91,4 @@ public class testGame {
         assertEquals(0,g.cols.get(2).cards.size());
     }
 
-    @Test
-    public void testSpanish(){
-        Game g = new Game();
-        g.customSpanishDeal(0, 3, 6, 9);
-        g.removeSpanish(2);
-        assertEquals(0, g.cols.get(2).cards.size());
-    }
 }

@@ -19,7 +19,6 @@ public class Game {
         }
     }
 
-
     public void dealFour(int d) {
         for(int i = 0; i < 4; i++) {
             if(d==0){
@@ -72,9 +71,14 @@ public class Game {
                 error=false;
             }
             else if(removeViaComodine<4){ //remove using wild card rule
-                this.cols.get(removeViaComodine).cards.remove(this.cols.get(removeViaComodine).cards.size()-1); //remove the comodine
-                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
-                error=false;
+                if(getTopCard(columnNumber).getValue()==14){
+                    error=true;
+                }
+                else {
+                    this.cols.get(removeViaComodine).cards.remove(this.cols.get(removeViaComodine).cards.size() - 1); //remove the comodine
+                    this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1); //remove card user selected
+                    error = false;
+                }
             }
             else{ //cant remove
                 error=true;
