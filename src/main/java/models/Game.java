@@ -33,12 +33,6 @@ public class Game {
         }
     }
 
-    public void dealFour() {
-        for(int i = 0; i < 4; i++) {
-            cols.get(i).cards.add(gameDeck.dealCard());
-        }
-    }
-
     //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
     public void customDeal(int c1, int c2, int c3, int c4) {
         cols.get(0).cards.add(testDeck.deck.get(c1));
