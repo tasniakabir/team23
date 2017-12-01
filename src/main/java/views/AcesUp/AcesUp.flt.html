@@ -318,10 +318,10 @@ $.ajax({
 });
 
 
-function removeSpanishCard(colNumber){
+function removeCard(colNumber){
 $.ajax({
 type: "POST",
-url: "/removeSpanishCard/"+colNumber,
+url: "/removeCard/"+colNumber,
 data: JSON.stringify(spanishgame),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
     spanishgame = data;
@@ -338,20 +338,18 @@ dataType:"json",
 
 }
 
-
 $("#Remove1").click(function(){
-    removeSpanishCard(0);
+    removeCard(0);
 });
 $("#Remove2").click(function(){
-    removeSpanishCard(1);
+    removeCard(1);
 });
 $("#Remove3").click(function(){
-    removeSpanishCard(2);
+    removeCard(2);
 });
 $("#Remove4").click(function(){
-    removeSpanishCard(3);
+    removeCard(3);
 });
-
 
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();
