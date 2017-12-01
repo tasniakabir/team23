@@ -74,13 +74,14 @@ public class testGame {
         assertEquals("2&spades",g.cols.get(3).cards.get(0).toString());
     }
 
+    @Test
     public void testSpanishCustomDeal(){
         Game g = new Game();
-        g.customDeal(0,0,0,0);
-        assertEquals("2&clubs",g.cols.get(0).cards.get(0).toString());
-        assertEquals("2&hearts",g.cols.get(1).cards.get(0).toString());
-        assertEquals("2&diams",g.cols.get(2).cards.get(0).toString());
-        assertEquals("2&spades",g.cols.get(3).cards.get(0).toString());
+        g.customSpanishDeal(0,0,0,0);
+        assertEquals("14Bastos",g.cols.get(0).cards.get(0).toString());
+        assertEquals("14Oros",g.cols.get(1).cards.get(0).toString());
+        assertEquals("14Copas",g.cols.get(2).cards.get(0).toString());
+        assertEquals("14Espadas",g.cols.get(3).cards.get(0).toString());
     }
 
     @Test
@@ -94,7 +95,7 @@ public class testGame {
     @Test
     public void testSpanish(){
         Game g = new Game();
-        g.customDeal(0, 3, 6, 9);
+        g.customSpanishDeal(0, 3, 6, 9);
         g.removeSpanish(2);
         assertEquals(0, g.cols.get(2).cards.size());
     }

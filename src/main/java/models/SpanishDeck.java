@@ -7,6 +7,12 @@ public class SpanishDeck extends superDeck {
         shuffle();
     }
 
+    public SpanishDeck(int test) {
+        if (test == 1) {
+            buildSpanishDeck();
+        }
+    }
+
     private void buildSpanishDeck() {
         for (int i = 1; i < 13; i++) {  //14 because 9 number cards and 3 face cards, starts at 2
             if (i==1){
