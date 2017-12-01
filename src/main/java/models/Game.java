@@ -20,23 +20,16 @@ public class Game {
     }
 
 
-    public void dealSpanishFour() {
-
+    public void dealFour(int d) {
         for(int i = 0; i < 4; i++) {
-
-            if(gameSpanishDeck.deck.size()!=0){
-
-                cols.get(i).cards.add(gameSpanishDeck.dealCard());
-
+            if(d==0){
+                cols.get(i).cards.add(gameDeck.dealCard());
             }
-
-        }
-
-    }
-
-    public void dealFour() {
-        for(int i = 0; i < 4; i++) {
-            cols.get(i).cards.add(gameDeck.dealCard());
+            else {
+                if (gameSpanishDeck.deck.size() != 0) {
+                    cols.get(i).cards.add(gameSpanishDeck.dealCard());
+                }
+            }
         }
     }
 
@@ -64,33 +57,7 @@ public class Game {
         testSpanishDeck.deck.remove(c4);
     }
 
-    public void remove(int columnNumber) {
-        if(columnHasCards(columnNumber)) {
-            Card c = getTopCard(columnNumber);
-            boolean removeCard = false;
-            for (int i = 0; i < 4; i++) {
-                if (i != columnNumber) {
-                    if (columnHasCards(i)) {
-                        Card compare = getTopCard(i);
-                        if (compare.getSuit() == c.getSuit()) {
-                            if (compare.getValue() > c.getValue()) {
-                                removeCard = true;
-                            }
-                        }
-                    }
-                }
-            }
-            if (removeCard) {
-                this.cols.get(columnNumber).cards.remove(this.cols.get(columnNumber).cards.size() - 1);
-                error=false;
-            }
-            else{
-                error=true;
-            }
-        }
-    }
-
-    public void removeSpanish(int columnNumber) { //New Remove function for spanish deck
+    public void remove(int columnNumber) { //New Remove function for spanish deck
         if(columnHasCards(columnNumber)) {
             boolean removeCard = canRemove(columnNumber);
             int removeViaComodine = findComodine();
