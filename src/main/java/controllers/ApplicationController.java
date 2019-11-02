@@ -33,17 +33,25 @@ public class ApplicationController {
     
     public Result gameGet(){
         Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
-        g.dealFour();
+       // g.buildDeck();
+       // g.shuffle();
+        //g.dealFour();
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+        int stdOrSp=-1;
+        if(context.getRequestPath().contains("spanish")){
+            stdOrSp=1;
         }
+        else if(context.getRequestPath().contains("deal")){
+            stdOrSp=0;
+        }
+        if(stdOrSp>-1) {
+            g.dealFour(stdOrSp);
+        }
+
         return Results.json().render(g);
     }
 
@@ -56,5 +64,4 @@ public class ApplicationController {
         g.move(colFrom,colTo);
         return Results.json().render(g);
     }
-
 }
